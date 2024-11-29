@@ -3,6 +3,7 @@ import React from "react";
 import RadioButtonsGroup from "../../components/radioButtons/RadioButton";
 import { Button } from "@mui/material";
 import "./radio.css";
+import { toast } from "react-toastify";
 export default function RadioWithTitle({
   type,
   setType,
@@ -15,6 +16,9 @@ export default function RadioWithTitle({
 }) {
   const clicked = () => {
     //
+    if (!type) {
+      return toast.error("Please select the option!");
+    }
     setStep(stepNumber);
     // callFunction(type);
   };

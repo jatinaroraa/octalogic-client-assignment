@@ -2,6 +2,7 @@ import React from "react";
 import DatePickerForVechicle from "../../components/datepicker/DatePicker";
 import "./vechicleforrent.css";
 import { Button } from "@mui/material";
+import { toast } from "react-toastify";
 export default function DateRangePicker({
   startDate,
   setStartDate,
@@ -10,15 +11,18 @@ export default function DateRangePicker({
   datesFilter,
   booked,
   setStep,
-  setNumber,
+  stepNumber,
 }) {
   const clicked = async () => {
     //clicked
+    if (!startDate && !endDate) {
+      return toast.error("Select both dates to confirm!");
+    }
     let res = await booked();
     if (res?.data) {
       //toastify
-      setStep(setNumber);
-      console.log("booked hurrahhhhh");
+      toast.success("Booking confirmed!");
+      setStep(stepNumber);
     }
   };
   return (

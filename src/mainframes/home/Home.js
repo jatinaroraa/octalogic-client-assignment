@@ -6,6 +6,7 @@ import RadioWithTitle from "../../components/radioButtons/radioWithTitle";
 import DateRangePicker from "../vechicle/DateRangePicker";
 import { getVechicleList } from "../../services/vechicle";
 import { createBookingApi, getBookingDateApi } from "../../services/booking";
+import LinearLoaderBar from "../../components/loader/LinearLoaderBar";
 
 export default function Home() {
   const [step, setStep] = useState(1);
@@ -34,6 +35,12 @@ export default function Home() {
       value: 2,
     },
   ];
+
+  const [progress, setProgress] = useState(0);
+
+  const increaseProgress = (add) => {
+    setProgress((prev) => (prev >= 100 ? 0 : prev + add)); // Reset progress when it reaches 100
+  };
   const getList = async () => {
     let data = await getVechicleList();
     console.log(data.data, "datat");
@@ -94,15 +101,26 @@ export default function Home() {
     return data;
   };
   useEffect(() => {
-    if (step == 1) getList();
+    if (step == 1) {
+      getList();
+    }
+    if (step == 2) {
+      increaseProgress(20);
+    }
     if (step == 3) {
       getTypeOfVechicles();
+      increaseProgress(20);
     }
     if (step == 4) {
       getWithType();
+      increaseProgress(20);
     }
     if (step == 5) {
       getBookingDateList();
+      increaseProgress(10);
+    }
+    if (step == 6) {
+      increaseProgress(30);
     }
   }, [step]);
   const RenderComponent = () => {
@@ -136,6 +154,7 @@ export default function Home() {
         width: "100%",
       }}
     >
+      <LinearLoaderBar progress={progress} />
       {/* {<RenderComponent />} */}
       {step == 1 ? (
         <UserInfo name={name} setName={setName} setStep={setStep} />
@@ -196,7 +215,7 @@ export default function Home() {
       ) : (
         ""
       )}
-      {step > 5 ? <h3>thank you booking confirmed</h3> : ""}
+      {step == 6 ? <h3>thank you booking confirmed</h3> : ""}
     </div>
   );
 }

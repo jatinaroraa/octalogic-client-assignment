@@ -2,8 +2,12 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import "./Userinfo.css";
 import { Button } from "@mui/material";
+import { toast } from "react-toastify";
 export default function UserInfo({ name, setName, setStep }) {
   const clicked = () => {
+    if (!name.firstName || !name.lastName) {
+      return toast.error("Please fill all the fields!");
+    }
     console.log(name, "name");
     setStep(2);
   };

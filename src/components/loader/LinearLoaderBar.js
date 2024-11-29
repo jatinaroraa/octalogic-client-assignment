@@ -4,13 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-export default function LinearLoaderBar() {
-  const [progress, setProgress] = useState(0);
-
-  const increaseProgress = () => {
-    setProgress((prev) => (prev >= 100 ? 0 : prev + 10)); // Reset progress when it reaches 100
-  };
-
+export default function LinearLoaderBar({ progress }) {
   return (
     <Box
       sx={{
@@ -19,7 +13,7 @@ export default function LinearLoaderBar() {
         mt: 4,
         textAlign: "center",
         padding: 2,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+        // boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
         borderRadius: "8px",
         backgroundColor: "#fff",
       }}
@@ -32,9 +26,9 @@ export default function LinearLoaderBar() {
         value={progress}
         sx={{ height: 10, borderRadius: 5, mb: 2 }}
       />
-      <Button variant="contained" color="primary" onClick={increaseProgress}>
+      {/* <Button variant="contained" color="primary" onClick={increaseProgress}>
         Increase Progress
-      </Button>
+      </Button> */}
     </Box>
   );
 }
