@@ -7,7 +7,20 @@ export default function DateRangePicker({
   setStartDate,
   endDate,
   setEndDate,
+  datesFilter,
+  booked,
+  setStep,
+  setNumber,
 }) {
+  const clicked = async () => {
+    //clicked
+    let res = await booked();
+    if (res?.data) {
+      //toastify
+      setStep(setNumber);
+      console.log("booked hurrahhhhh");
+    }
+  };
   return (
     <div className="daterangepicker-main">
       <div className="daterangepicker-container">
@@ -17,14 +30,18 @@ export default function DateRangePicker({
             selectedDate={startDate}
             setSelectedDate={setStartDate}
             label="startDate"
+            datesFilter={datesFilter.startDate}
           />
           <DatePickerForVechicle
             selectedDate={endDate}
             setSelectedDate={setEndDate}
             label="enddate"
+            datesFilter={datesFilter.endDate}
           />
         </div>
-        <Button variant="contained">Booked</Button>
+        <Button variant="contained" onClick={clicked}>
+          Booked
+        </Button>
       </div>
     </div>
   );

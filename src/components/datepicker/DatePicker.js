@@ -9,6 +9,7 @@ export default function DatePickerForVechicle({
   setSelectedDate,
   minDate,
   label,
+  datesFilter,
 }) {
   const handleDateChange = (newValue) => {
     setSelectedDate(newValue);
@@ -23,6 +24,19 @@ export default function DatePickerForVechicle({
         onChange={handleDateChange}
         minDate={minDate}
         renderInput={(params) => <TextField {...params} />}
+        shouldDisableDate={(date) => {
+          // List of dates to disable
+          const disabledDates = datesFilter;
+
+          // Convert both dates to only the date part in ISO format
+          const formattedDate = date.toISOString().split("T")[0];
+          const formattedDisabledDates = disabledDates.map(
+            (d) => d.split("T")[0]
+          );
+
+          // Disable the date if it matches any in the list
+          return formattedDisabledDates.includes(formattedDate);
+        }}
       />
     </LocalizationProvider>
   );

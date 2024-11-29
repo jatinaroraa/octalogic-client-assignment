@@ -7,6 +7,6 @@ export const getVechicleList = async (wheels, type, model) => {
   if (type) params += `type=${type}&`;
   if (model) params += `model=${model}&`;
 
-  let list = await axios.get(`${baseurl}${getList}`);
+  let list = await axios.get(`${baseurl}${getList}${params}`);
   return list;
 };

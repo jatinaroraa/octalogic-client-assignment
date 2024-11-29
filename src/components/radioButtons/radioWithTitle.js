@@ -11,10 +11,12 @@ export default function RadioWithTitle({
   buttonTitle,
   setStep,
   stepNumber,
+  callFunction,
 }) {
   const clicked = () => {
     //
     setStep(stepNumber);
+    // callFunction(type);
   };
   const vechiclesList = [
     {
