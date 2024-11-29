@@ -1,0 +1,54 @@
+.vechileforrent-container {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  /* width: max-content; */
+  width: 40vw;
+  padding: 10px;
+}
+.vechileforrent-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.vechileforrent-datepicker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.VechicleSelect-container {
+  display: flex;
+  flex-direction: column;
+}
+.VechicleSelect-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: red; */
+}
+/* daterangepicker  */
+
+.daterangepicker-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+}
+.daterangepicker-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.daterangepicker-container h3 {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.daterangepicker-container div {
+  margin: 5px 0px;
+}
